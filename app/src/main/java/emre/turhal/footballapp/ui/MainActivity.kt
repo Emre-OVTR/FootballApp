@@ -1,11 +1,11 @@
 package emre.turhal.footballapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import emre.turhal.footballapp.ViewModel
 import emre.turhal.footballapp.databinding.ActivityMainBinding
 
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureRecyclerView(){
         val recyclerView = binding.standing
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = layoutManager
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
         recyclerView.addItemDecoration(dividerItemDecoration)

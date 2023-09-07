@@ -3,11 +3,12 @@ package emre.turhal.footballapp.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import emre.turhal.footballapp.model.CompetitionsItem
+import com.bumptech.glide.Glide
 import emre.turhal.footballapp.R
+import emre.turhal.footballapp.model.CompetitionsItem
 
 class CompetitionsListAdapter : androidx.recyclerview.widget.ListAdapter<CompetitionsItem, CompetitionsListAdapter.CompetitionsViewHolder>(CompetitionsDiffCallback()) {
 
@@ -21,9 +22,9 @@ class CompetitionsListAdapter : androidx.recyclerview.widget.ListAdapter<Competi
     }
 
     class CompetitionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val competName: TextView = itemView.findViewById(R.id.name)
-        fun bind(item: CompetitionsItem) {
-            competName.text = item.name
+        val competEmblem: ImageView = itemView.findViewById(R.id.emblem)
+        fun bind(item: CompetitionsItem)= with(itemView) {
+            Glide.with(context).load(item.emblem).into(competEmblem)
         }
 
 
