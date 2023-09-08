@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import emre.turhal.footballapp.ViewModel
 import emre.turhal.footballapp.databinding.ActivityMainBinding
+import emre.turhal.footballapp.model.CompetitionsItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,11 +27,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestCompetitionList(){
+        val itemsList : MutableList<CompetitionsItem> = ArrayList()
         viewModel = ViewModel()
         viewModel.getCompetitions()
         viewModel.competitionsLiveData.observe(this){
             if (it.size == 13){
-                adapter.submitList(it)
+                for (i in it){
+                    if (i != null) {
+                        if (i.emblem?.endsWith(".png") == true){
+                            itemsList.add(i)
+                        }
+                    }
+                }
+                adapter.submitList(itemsList)
 
                 Log.e("jjjj","n'est pas vide ")
             } else {
