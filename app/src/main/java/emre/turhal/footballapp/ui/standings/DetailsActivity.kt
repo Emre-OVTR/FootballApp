@@ -20,7 +20,11 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(view)
         configureRecyclerView()
         showCompetitionStandings()
+
     }
+
+
+
 
 
     private fun configureRecyclerView(){

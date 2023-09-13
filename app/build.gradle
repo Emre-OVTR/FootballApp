@@ -58,4 +58,8 @@ dependencies {
     //COROUTINES
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+
+    //COIL
+    implementation'io.coil-kt:coil:1.2.0'
+    implementation'io.coil-kt:coil-svg:1.2.0'
 }
