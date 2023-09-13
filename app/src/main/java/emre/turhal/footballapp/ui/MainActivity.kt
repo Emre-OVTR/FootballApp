@@ -1,5 +1,6 @@
 package emre.turhal.footballapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import emre.turhal.footballapp.ViewModel
 import emre.turhal.footballapp.databinding.ActivityMainBinding
 import emre.turhal.footballapp.model.CompetitionsItem
+import emre.turhal.footballapp.ui.standings.DetailsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,12 +52,19 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun configureRecyclerView(){
-        val recyclerView = binding.standing
+        val recyclerView = binding.competitions
         val layoutManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = layoutManager
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
         recyclerView.addItemDecoration(dividerItemDecoration)
-        adapter = CompetitionsListAdapter()
+        adapter = CompetitionsListAdapter(this::onCompetitionClicked)
         recyclerView.adapter = adapter
+    }
+
+    private fun onCompetitionClicked(item: CompetitionsItem){
+
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(DetailsActivity.COMPETITION, item)
+        startActivity(intent)
     }
 }

@@ -1,8 +1,9 @@
 package emre.turhal.footballapp.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class Response(
+data class Competitions(
 
 	@field:SerializedName("count")
 	val count: Int? = null,
@@ -12,28 +13,11 @@ data class Response(
 
 	@field:SerializedName("filters")
 	val filters: Filters? = null
-)
+): Serializable
 
-data class Filters(
 
-	@field:SerializedName("client")
-	val client: String? = null
-)
 
-data class Area(
 
-	@field:SerializedName("code")
-	val code: String? = null,
-
-	@field:SerializedName("flag")
-	val flag: String? = null,
-
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("id")
-	val id: Int? = null
-)
 
 data class CurrentSeason(
 
@@ -51,7 +35,7 @@ data class CurrentSeason(
 
 	@field:SerializedName("startDate")
 	val startDate: String? = null
-)
+): Serializable
 
 data class CompetitionsItem(
 
@@ -84,40 +68,6 @@ data class CompetitionsItem(
 
 	@field:SerializedName("plan")
 	val plan: String? = null
-)
+): Serializable
 
-data class Winner(
 
-	@field:SerializedName("venue")
-	val venue: String? = null,
-
-	@field:SerializedName("lastUpdated")
-	val lastUpdated: String? = null,
-
-	@field:SerializedName("website")
-	val website: String? = null,
-
-	@field:SerializedName("address")
-	val address: String? = null,
-
-	@field:SerializedName("clubColors")
-	val clubColors: String? = null,
-
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("tla")
-	val tla: String? = null,
-
-	@field:SerializedName("founded")
-	val founded: Int? = null,
-
-	@field:SerializedName("id")
-	val id: Int? = null,
-
-	@field:SerializedName("shortName")
-	val shortName: String? = null,
-
-	@field:SerializedName("crest")
-	val crest: String? = null
-)

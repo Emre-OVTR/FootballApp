@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import emre.turhal.footballapp.R
 import emre.turhal.footballapp.model.CompetitionsItem
 
-class CompetitionsListAdapter : androidx.recyclerview.widget.ListAdapter<CompetitionsItem, CompetitionsListAdapter.CompetitionsViewHolder>(CompetitionsDiffCallback()) {
+class CompetitionsListAdapter(private val clickListener : (competition : CompetitionsItem) -> Unit) : androidx.recyclerview.widget.ListAdapter<CompetitionsItem, CompetitionsListAdapter.CompetitionsViewHolder>(CompetitionsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompetitionsViewHolder {
         return CompetitionsViewHolder.create(parent)
@@ -18,20 +18,23 @@ class CompetitionsListAdapter : androidx.recyclerview.widget.ListAdapter<Competi
 
     override fun onBindViewHolder(holder: CompetitionsViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
     class CompetitionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val competEmblem: ImageView = itemView.findViewById(R.id.emblem)
-        fun bind(item: CompetitionsItem)= with(itemView) {
-            Glide.with(context).load(item.emblem).into(competEmblem)
+        val competitionEmblem: ImageView = itemView.findViewById(R.id.emblem)
+        fun bind(item: CompetitionsItem, clickListener: (competition: CompetitionsItem) -> Unit)= with(itemView) {
+            Glide.with(context).load(item.emblem).into(competitionEmblem)
+            itemView.setOnClickListener{
+                clickListener(item)
+            }
         }
 
 
         companion object {
             fun create(parent: ViewGroup): CompetitionsViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.team_list_items, parent, false)
+                    .inflate(R.layout.competition_list_items, parent, false)
                 return CompetitionsViewHolder(view)
             }
         }
